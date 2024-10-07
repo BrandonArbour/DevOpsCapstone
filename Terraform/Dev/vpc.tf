@@ -32,7 +32,7 @@ resource "aws_route_table" "dev_rt" {
   }
 }
 resource "aws_route_table_association" "dv_rta" {
-  count = 1
-  subnet_id = aws_subnet.public_subnet.id
+  count          = 1
+  subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.dev_rt.id
 }
