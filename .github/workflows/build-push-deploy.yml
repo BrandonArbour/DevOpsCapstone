@@ -12,6 +12,9 @@ jobs:
     - name: Login to Docker
       run: docker login -u brandonarbour -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image
-      run: docker build './Web App' --file Dockerfile -t brandonarbour/capstone-web:latest
+      run: |
+        pwd
+        ls -lh
+        docker build './Web App' --file Dockerfile -t brandonarbour/capstone-web:latest
     - name: Push the Docker image
       run: docker push brandonarbour/capstone-web:latest
