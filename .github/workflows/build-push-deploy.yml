@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login to Docker
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u brandonarbour --password-stdin
+      run: docker login -u brandonarbour -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image
       run: docker build './Web App' --file Dockerfile -t brandonarbour/capstone-web:latest
     - name: Push the Docker image
