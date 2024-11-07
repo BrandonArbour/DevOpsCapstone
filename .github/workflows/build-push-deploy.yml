@@ -3,16 +3,15 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
+    - name: Login to Docker
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u brandonarbour --password-stdin
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build './Web App' --file Dockerfile -t brandonarbour/capstone-web:latest
+    - name: Push the Docker image
+      run: docker push brandonarbour/capstone-web:latest
