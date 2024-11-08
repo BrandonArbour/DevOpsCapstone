@@ -60,4 +60,4 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
         cd ./Terraform/Dev
-        terraform apply -auto-approve -input=false
+        terraform apply -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}"
