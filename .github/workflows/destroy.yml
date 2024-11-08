@@ -39,7 +39,6 @@ jobs:
         terraform init -backend-config="bucket=${AWS_BUCKET_NAME}" -backend-config="key=${AWS_BUCKET_KEY_NAME}" -backend-config="region=${AWS_REGION}"
   
     - name: Terraform Destroy
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
         cd ./Terraform/Dev
         terraform destroy -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}"
