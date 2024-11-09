@@ -3,7 +3,7 @@ resource "aws_lb" "dev_nlb" {
   internal           = false
   load_balancer_type = "network"
   security_groups    = [aws_security_group.allow_dev_access.id]
-  subnets            = [aws_subnet.public_subnet[*].id]
+  subnets            = aws_subnet.public_subnet[*].id
 }
 
 resource "aws_lb_listener" "dev_nlb_listener" {
@@ -26,7 +26,6 @@ resource "aws_lb_target_group" "dev_nlb_tg" {
   health_check {
     enabled             = true
     interval            = 30
-    path                = "/"
     port                = "traffic-port"
     protocol            = "TCP"
     healthy_threshold   = 3
