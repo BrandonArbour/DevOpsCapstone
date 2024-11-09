@@ -1,5 +1,5 @@
 resource "aws_lb" "dev_nlb" {
-  name               = "dev_alb"
+  name               = "dev-alb"
   internal           = false
   load_balancer_type = "network"
   security_groups    = [aws_security_group.allow_dev_access.id]
@@ -18,7 +18,7 @@ resource "aws_lb_listener" "dev_nlb_listener" {
 }
 
 resource "aws_lb_target_group" "dev_nlb_tg" {
-  name     = "dev_nlb_tg"
+  name     = "dev-nlb-tg"
   port     = 80
   protocol = "TCP"
   vpc_id   = aws_vpc.dev_vpc.id
