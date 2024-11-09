@@ -22,6 +22,7 @@ resource "aws_lb_target_group" "dev_nlb_tg" {
   port     = 80
   protocol = "TCP"
   vpc_id   = aws_vpc.dev_vpc.id
+  target_type = "ip"
 
   health_check {
     enabled             = true
