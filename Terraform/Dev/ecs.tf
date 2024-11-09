@@ -36,4 +36,12 @@ resource "aws_ecs_service" "dev_ecs_service" {
     security_groups  = [aws_security_group.allow_dev_access.id]
     assign_public_ip = true
   }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.dev_nlb_tg.arn
+    container_name   = "CapstoneWeb"
+    container_port   = 80
+  }
+
+  depends_on = [aws_lb_listener.dev_nlb_listener]
 }

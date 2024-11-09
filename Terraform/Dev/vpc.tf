@@ -31,7 +31,7 @@ resource "aws_route_table" "dev_rt" {
     gateway_id = aws_internet_gateway.dev_igw.id
   }
 }
-resource "aws_route_table_association" "dv_rta" {
+resource "aws_route_table_association" "dev_rta" {
   count          = 1
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.dev_rt.id
