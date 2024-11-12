@@ -32,7 +32,7 @@ resource "aws_ecs_service" "dev_ecs_service" {
   desired_count   = 1
 
   network_configuration {
-    subnets          = aws_subnet.dev_private_subnet[*].id
+    subnets          = aws_subnet.dev_private_subnet_[*].id
     security_groups  = [aws_security_group.allow_dev_access.id]
   }
 
