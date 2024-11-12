@@ -1,35 +1,24 @@
-resource "aws_lb" "dev_nlb" {
+resource "aws_lb" "dev_alb" {
   name               = "dev-alb"
-  internal           = false
-  load_balancer_type = "network"
+  load_balancer_type = "application"
   security_groups    = [aws_security_group.allow_dev_access.id]
-  subnets            = aws_subnet.public_subnet[*].id
+  subnets            = aws_subnet.dev_public_subnet.id
 }
 
-resource "aws_lb_listener" "dev_nlb_listener" {
-  load_balancer_arn = aws_lb.dev_nlb.arn
+resource "aws_lb_listener" "dev_alb_listener" {
+  load_balancer_arn = aws_lb.dev_alb.arn
   port              = 80
-  protocol          = "TCP"
+  protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.dev_nlb_tg.arn
+    target_group_arn = aws_lb_target_group.dev_alb_tg.arn
   }
 }
 
-resource "aws_lb_target_group" "dev_nlb_tg" {
-  name     = "dev-nlb-tg"
+resource "aws_lb_target_group" "dev_alb_tg" {
+  name     = "dev-alb-tg"
   port     = 80
-  protocol = "TCP"
+  protocol = "HTTP"
   vpc_id   = aws_vpc.dev_vpc.id
-  target_type = "ip"
-
-  health_check {
-    enabled             = true
-    interval            = 30
-    port                = "traffic-port"
-    protocol            = "TCP"
-    healthy_threshold   = 3
-    unhealthy_threshold = 3
-  }
 }

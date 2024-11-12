@@ -6,12 +6,22 @@ resource "aws_vpc" "dev_vpc" {
   }
 }
 
-resource "aws_subnet" "public_subnet" {
+resource "aws_subnet" "dev_public_subnet" {
   vpc_id     = aws_vpc.dev_vpc.id
   cidr_block = "10.0.1.0/24"
+  map_public_ip_on_launch = true
 
   tags = {
-    Name = "dev_subnet"
+    Name = "dev_public_subnet"
+  }
+}
+
+resource "aws_subnet" "dev_private_subnet" {
+  vpc_id     = aws_vpc.dev_vpc.id
+  cidr_block = "10.0.2.0/24"
+
+  tags = {
+    Name = "dev_private_subnet"
   }
 }
 
@@ -23,7 +33,7 @@ resource "aws_internet_gateway" "dev_igw" {
   }
 }
 
-resource "aws_route_table" "dev_rt" {
+/*resource "aws_route_table" "dev_rt" {
   vpc_id = aws_vpc.dev_vpc.id
 
   route {
@@ -35,4 +45,4 @@ resource "aws_route_table_association" "dev_rta" {
   count          = 1
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.dev_rt.id
-}
+}*/

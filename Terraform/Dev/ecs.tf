@@ -11,8 +11,8 @@ resource "aws_ecs_task_definition" "dev_task_def" {
 
   container_definitions = jsonencode([
     {
-      name      = "CapstoneWeb"
-      image     = "brandonarbour/capstone-web"
+      name      = "DevCapstoneWeb"
+      image     = "brandonarbour/dev-capstone-web"
       essential = true
       portMappings = [
         {
@@ -32,16 +32,15 @@ resource "aws_ecs_service" "dev_ecs_service" {
   desired_count   = 1
 
   network_configuration {
-    subnets          = aws_subnet.public_subnet[*].id
+    subnets          = aws_subnet.dev_private_subnet.id
     security_groups  = [aws_security_group.allow_dev_access.id]
-    assign_public_ip = true
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.dev_nlb_tg.arn
-    container_name   = "CapstoneWeb"
+    target_group_arn = aws_lb_target_group.dev_alb_tg.arn
+    container_name   = "DevCapstoneWeb"
     container_port   = 80
   }
 
-  depends_on = [aws_lb_listener.dev_nlb_listener]
+  depends_on = [aws_lb_listener.dev_alb_listener]
 }
