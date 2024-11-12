@@ -2,7 +2,7 @@ resource "aws_lb" "dev_alb" {
   name               = "dev-alb"
   load_balancer_type = "application"
   security_groups    = [aws_security_group.allow_dev_access.id]
-  subnets            = [aws_subnet.dev_public_subnet.id]
+  subnets            = [aws_subnet.dev_public_subne[*].id]
 }
 
 resource "aws_lb_listener" "dev_alb_listener" {
