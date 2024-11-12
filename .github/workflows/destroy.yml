@@ -9,7 +9,7 @@ permissions:
 
 env:
   TF_LOG: INFO
-  AWS_REGION: ${{ var.AWS_REGION }}
+  AWS_REGION: ${{ vars.AWS_REGION }}
 
 jobs:
   destroy:
@@ -21,7 +21,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: ${{ secrets.AWS_ROLE }}
-        aws-region: ${{ var.AWS_REGION }}
+        aws-region: ${{ vars.AWS_REGION }}
         role-session-name: GitHub-OIDC-Terraform
       
     - name: Setup Terraform
