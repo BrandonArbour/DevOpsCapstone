@@ -8,7 +8,7 @@ resource "aws_vpc" "dev_vpc" {
 
 resource "aws_subnet" "dev_public_subnet_1" {
   vpc_id     = aws_vpc.dev_vpc.id
-  availability_zone = " ca-central-1a"
+  availability_zone = "ca-central-1a"
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
 
