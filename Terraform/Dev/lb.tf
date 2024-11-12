@@ -21,5 +21,4 @@ resource "aws_lb_target_group" "dev_alb_tg" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.dev_vpc.id
-  target_type = "ip"
 }
