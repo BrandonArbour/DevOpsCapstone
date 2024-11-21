@@ -32,8 +32,9 @@ resource "aws_ecs_service" "dev_ecs_service" {
   desired_count   = 1
 
   network_configuration {
-    subnets          = [aws_subnet.dev_private_subnet_1.id,aws_subnet.dev_private_subnet_2.id]
+    subnets          = [aws_subnet.dev_private_subnet_1.id]
     security_groups  = [aws_security_group.allow_dev_access.id]
+    assign_public_ip = true
   }
 
   load_balancer {
