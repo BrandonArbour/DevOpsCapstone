@@ -64,13 +64,13 @@ resource "aws_route_table" "dev_rt" {
     gateway_id = aws_internet_gateway.dev_igw.id
   }
 }
-resource "aws_route_table_association" "dev_rta_sn1" {
+resource "aws_route_table_association" "dev_rta_public_subnet_1" {
   count          = 1
   subnet_id      = aws_subnet.dev_public_subnet_1.id
   route_table_id = aws_route_table.dev_rt.id
 }
 
-resource "aws_route_table_association" "dev_rta_sn2" {
+resource "aws_route_table_association" "dev_rta_public_subnet_2" {
   count          = 1
   subnet_id      = aws_subnet.dev_public_subnet_2.id
   route_table_id = aws_route_table.dev_rt.id
