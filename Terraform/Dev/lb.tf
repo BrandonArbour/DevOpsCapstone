@@ -22,4 +22,5 @@ resource "aws_lb_target_group" "dev_alb_tg" {
   protocol = "HTTP"
   vpc_id   = aws_vpc.dev_vpc.id
   target_type = "ip"
+  depends_on = [aws_ecs_service.dev_ecs_service]  
 }

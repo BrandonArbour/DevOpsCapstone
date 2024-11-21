@@ -48,7 +48,7 @@ resource "aws_subnet" "dev_private_subnet_2" {
   }
 }
 
-resource "aws_internet_gateway" "dev_igw" {
+/*resource "aws_internet_gateway" "dev_igw" {
   vpc_id = aws_vpc.dev_vpc.id
 
   tags = {
@@ -56,7 +56,7 @@ resource "aws_internet_gateway" "dev_igw" {
   }
 }
 
-/*resource "aws_route_table" "dev_rt" {
+resource "aws_route_table" "dev_rt" {
   vpc_id = aws_vpc.dev_vpc.id
 
   route {
