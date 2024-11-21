@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "dev_task_def" {
 }
 
 resource "aws_ecs_service" "dev_ecs_service" {
-  name            = "httpd"
+  name            = "DevCapstoneWeb"
   cluster         = aws_ecs_cluster.dev_ecs_cluster.id
   task_definition = aws_ecs_task_definition.dev_task_def.id
   launch_type     = "FARGATE"
@@ -41,6 +41,4 @@ resource "aws_ecs_service" "dev_ecs_service" {
     container_name   = "DevCapstoneWeb"
     container_port   = 80
   }
-
-  depends_on = [aws_lb_listener.dev_alb_listener]
 }
