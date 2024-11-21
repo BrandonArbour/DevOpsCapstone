@@ -22,4 +22,14 @@ resource "aws_lb_target_group" "dev_alb_tg" {
   protocol = "HTTP"
   vpc_id   = aws_vpc.dev_vpc.id
   target_type = "ip"
+  health_check {
+    path = "/health"
+    protocol = "HTTP"
+    matcher = "200"
+    port = "traffic-port"
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 10
+    interval = 30
+  }
 }
