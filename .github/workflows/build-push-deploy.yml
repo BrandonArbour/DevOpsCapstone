@@ -24,7 +24,7 @@ jobs:
     - name: Build the Docker image
       run: |
         cd './Web App'
-        docker build --file Dockerfile -t brandonarbour/dev-capstone-web:latest -t brandonarbour/dev-capstone-web:${GITHUB_SHA::6} .
+        docker build --file Dockerfile -t brandonarbour/dev-capstone-web:latest -t brandonarbour/dev-capstone-web:${GITHUB_SHA::7} .
     
     - name: Push the Docker image
       run: docker push brandonarbour/dev-capstone-web --all-tags
@@ -60,4 +60,4 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
         cd ./Terraform/Dev
-        terraform apply -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var "dev_image_name=brandonarbour/dev-capstone-web:${GITHUB_SHA::6}"
+        terraform apply -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var "dev_image_name=brandonarbour/dev-capstone-web:${GITHUB_SHA::7}"
