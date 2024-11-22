@@ -1,3 +1,5 @@
+name: Scan repo
+
 on:
   schedule:
     - cron: '20 11 * * 2,4'
