@@ -41,4 +41,4 @@ jobs:
     - name: Terraform Destroy
       run: |
         cd ./Terraform/Dev
-        terraform destroy -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var -var "dev_image_name=brandonarbour/dev-capstone-web:${GITHUB_SHA::7}"
+        terraform destroy -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var -var "dev_image_name=brandonarbour/dev-capstone-web:latest"
