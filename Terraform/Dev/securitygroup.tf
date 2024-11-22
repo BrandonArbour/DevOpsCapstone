@@ -19,7 +19,7 @@ resource "aws_vpc_security_group_ingress_rule" "dev_ecs_sg_in" {
   from_port = 80
   to_port = 80
   ip_protocol = "tcp"
-  referenced_security_group_id = aws_security_group.dev_ecs_sg.id
+  referenced_security_group_id = aws_security_group.allow_dev_access.id
   
 }
 
