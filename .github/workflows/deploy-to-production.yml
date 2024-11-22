@@ -61,4 +61,4 @@ jobs:
     - name: Terraform Apply
       run: |
         cd ./Terraform/Prod
-        terraform apply -auto-approve -var "prod_cidr_ipv4=${{ secrets.PROD_CIDR_IPV4 }}" -var "dev_image_name=brandonarbour/capstone-web:${GITHUB_SHA::7}"
+        terraform apply -auto-approve -var "prod_cidr_ipv4=${{ secrets.PROD_CIDR_IPV4 }}" -var "prod_image_name=brandonarbour/capstone-web:${GITHUB_SHA::7}"
