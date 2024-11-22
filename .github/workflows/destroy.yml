@@ -64,12 +64,12 @@ jobs:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
         AWS_BUCKET_PROD_TFSTATES: ${{ secrets.AWS_BUCKET_PROD_TFSTATES }}
       run: |
-        cd ./Terraform/Dev
+        cd ./Terraform/Prod
         terraform init -backend-config="bucket=${AWS_BUCKET_NAME}" -backend-config="key=${AWS_BUCKET_PROD_TFSTATES}" -backend-config="region=${AWS_REGION}"
   
     - name: Terraform Destroy
       run: |
-        cd ./Terraform/Dev
+        cd ./Terraform/Prod
         terraform destroy -auto-approve -var "prod_cidr_ipv4=${{ secrets.PROD_CIDR_IPV4 }}" -var "prod_image_name=brandonarbour/capstone-web:latest"
 
         
