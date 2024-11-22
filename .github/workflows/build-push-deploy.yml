@@ -1,8 +1,11 @@
-name: Build, push and deploy
+name: Build, push and deploy dev
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'Web App/**'
+      - 'Terraform/Dev/**'
 
 permissions:
   id-token: write
