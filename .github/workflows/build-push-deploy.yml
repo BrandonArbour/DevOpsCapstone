@@ -24,13 +24,13 @@ jobs:
     - name: Build the Docker image
       run: |
         cd './Web App'
-        docker build --file Dockerfile -t brandonarbour/dev-capstone-web:latest .
+        docker build --file Dockerfile -t brandonarbour/dev-capstone-web:latest -t brandonarbour/dev-capstone-web:${GITHUB_SHA::6} .
     
     - name: Push the Docker image
-      run: docker push brandonarbour/dev-capstone-web:latest
+      run: docker push brandonarbour/dev-capstone-web --all-tags
     
     - name: Setup AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: ${{ secrets.AWS_ROLE }}
         aws-region: ${{ vars.AWS_REGION }}
