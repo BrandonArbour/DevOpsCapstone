@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "dev_task_def" {
   container_definitions = jsonencode([
     {
       name      = "DevCapstoneWeb"
-      image     = "brandonarbour/dev-capstone-web"
+      image     = var.dev_image_name
       essential = true
       portMappings = [
         {

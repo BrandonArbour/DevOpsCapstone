@@ -3,3 +3,8 @@ variable "dev_cidr_ipv4" {
   type        = string
   sensitive   = true
 }
+
+variable "dev_image_name" {
+  description = "Image name with shortened commit hash tag"
+  type        = string
+}
