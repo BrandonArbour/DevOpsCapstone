@@ -15,7 +15,7 @@ jobs:
       - name: Scan repo with Trivy
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          scan-type: 'fs'
+          scan-type: 'repo'
           ignore-unfixed: true
           format: 'table'
           severity: 'CRITICAL'
