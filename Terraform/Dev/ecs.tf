@@ -32,7 +32,7 @@ resource "aws_ecs_service" "dev_ecs_service" {
   desired_count   = 1
 
   network_configuration {
-    subnets          = [aws_subnet.dev_public_subnet_1.id,aws_subnet.dev_public_subnet_2.id]
+    subnets          = [aws_subnet.dev_public_subnet_1.id, aws_subnet.dev_public_subnet_2.id]
     security_groups  = [aws_security_group.dev_ecs_sg.id]
     assign_public_ip = true
   }
