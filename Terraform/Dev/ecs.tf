@@ -33,7 +33,7 @@ resource "aws_ecs_service" "dev_ecs_service" {
 
   network_configuration {
     subnets          = [aws_subnet.dev_public_subnet_1.id,aws_subnet.dev_public_subnet_2.id]
-    security_groups  = [aws_security_group.allow_dev_access.id]
+    security_groups  = [aws_security_group.dev_ecs_sg]
     assign_public_ip = true
   }
 
