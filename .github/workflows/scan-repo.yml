@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
       
       - name: Scan repo with Trivy
         uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: 'repo'
-          ignore-unfixed: true
-          format: 'table'
-          severity: 'CRITICAL'
+          scanners: secret
