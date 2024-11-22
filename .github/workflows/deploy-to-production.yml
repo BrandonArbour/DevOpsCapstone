@@ -25,7 +25,16 @@ jobs:
       run: |
         docker tag brandonarbour/dev-capstone-web:latest brandonarbour/capstone-web:latest
         docker tag brandonarbour/capstone-web:latest brandonarbour/capstone-web:${GITHUB_SHA::7}
-    
+        
+    - name: Run vulnerability scanner
+      uses: aquasecurity/trivy-action@0.28.0
+      with: 
+        image-ref: 'brandonarbour/capstone-web:${GITHUB_SHA::7}'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        severity: 'CRITICAL,HIGH'
+
     - name: Push the Docker image
       run: docker push brandonarbour/capstone-web --all-tags
 
