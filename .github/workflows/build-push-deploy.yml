@@ -7,10 +7,8 @@ on:
 permissions:
   id-token: write
   contents: read
-  pull-requests: write
 
 env:
-  TF_LOG: INFO
   AWS_REGION: ${{ vars.AWS_REGION }}
 
 jobs:
