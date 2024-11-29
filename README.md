@@ -2,4 +2,6 @@
 
 DevOps is a set of practices that aim to improve collaboration between development and operations teams. DevOps can reduce the time needed to release updates, using automation to build, test and deploy code. Infrastructure as code is used to create infrastructure that is consistent and repeatable, allowing developers to test their code in production-like environments. Security tools can be incorporated earlier in the development process to find vulnerabilities earlier. These are just some of the benefits of DevOps practices.
 
+## Features
+
 This project is focused on implementing DevOps practices into the development of a web application. A web server is created as a Docker image, with a homepage giving a brief overview of the project. When code is changed, GitHub actions are used to build a new Docker image, scan it for vulnerabilities using Trivy, and then use Terraform to update the development environment on AWS. When changes are ready to be deployed to production, another GitHub action can be triggered to pull the latest development image and tag it as production, then Terraform will update the production environment on AWS. The repository is also configured to be scanned for secrets on a schedule.
