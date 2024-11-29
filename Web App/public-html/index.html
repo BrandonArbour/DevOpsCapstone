@@ -6,7 +6,30 @@
 <body>
 
 <h1>DevOps Capstone</h1>
-<p>Example web app to demonstrate DevOps practices. Testing pipelines :)!!</p>
-<p></p><a href="https://www.youtube.com/watch?v=fW69GYmiHBM">ksante</a></p>
+<p>Source code can be viewed on <a href="https://github.com/BrandonArbour/DevOpsCapstone">GitHub</p></a>
+
+<h2>Overview</h2>
+<p>This project is focused on implementing DevOps practices into the development of a web application, here is an overview of the features implemented:
+
+<ul>
+<li>Docker image based on httpd, with a homepage giving a brief overview of the project</li>
+<li>GitHub action to deploy the developement environment, triggers when code is changed:</li>
+<li>Build the Docker image
+<ul>
+<li>Scan the image for vulnerabilities with Trivy</li>
+<li>Push the image to Docker Hub</li>
+<li>Create and update the development environment on AWS with Terraform</li>
+</ul>
+</li>
+<li>GitHub action to deploy the production environment, manually triggered:
+<ul>
+<li>Pull the latest development image and tag it as production</li>
+<li>Push the image to Docker Hub</li>
+<li>Create and update the production environment on AWS with Terraform</li>
+</ul>
+<li>GitHub action that scans the repository for secrets on a schedule</li>
+<li>GitHub action that destroys the development and production environment</li>
+</li>
+</ul>
 </body>
 </html>

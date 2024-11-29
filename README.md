@@ -4,7 +4,7 @@ DevOps is a set of practices that aim to improve collaboration between developme
 
 ## Overview
 
-This project is focused on implementing DevOps practices into the development of a web application, here are the features implemented:
+This project is focused on implementing DevOps practices into the development of a web application, here is an overview of the features implemented:
 
 - Docker image based on httpd, with a homepage giving a brief overview of the project
 - GitHub action to deploy the developement environment, triggers when code is changed:
@@ -21,8 +21,9 @@ This project is focused on implementing DevOps practices into the development of
 
 ## Secrets and Variables
 
-Secrets
+This project requires the following secrets and variables to be configured for actions to run properly:
 
+Secrets
 - AWS_ROLE: Name of the IAM role that will be assumed by Terraform
 - AWS_BUCKET_NAME: Name of the S3 bucket stores the Terraform state files
 - AWS_BUCKET_DEV_TFSTATES: Name of Terraform state file for the development environment
@@ -32,5 +33,4 @@ Secrets
 - PROD_CIDR_IPV4: CIDR ranges allowed to access the production environment
 
 Variables
-
 - AWS_REGION: AWS region to deploy resources in
