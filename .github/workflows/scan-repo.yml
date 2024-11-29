@@ -14,9 +14,8 @@ jobs:
         with:
           fetch-depth: '0'
       
-      - name: Scan repo with Trivy
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          scan-type: 'repo'
-          format: 'table'
-          scanners: 'secret'
+      - name: Install Trivy
+        uses: aquasecurity/setup-trivy@0.28.0
+
+      - name: Run Trivy secret scanner in repo mode
+        run: trivy fs --security-checks secret .
