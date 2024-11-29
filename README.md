@@ -4,7 +4,7 @@ DevOps is a set of practices that aim to improve collaboration between developme
 
 ## Network Diagram
 
-![Network Diagram](/docs/images/Capstone Network Diagram.png)
+![Network Diagram](https://github.com/BrandonArbour/DevOpsCapstone/blob/main/docs/images/Capstone%20Network%20Diagram.png)
 
 ## Overview
 
