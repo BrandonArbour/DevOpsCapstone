@@ -2,6 +2,10 @@
 
 DevOps is a set of practices that aim to improve collaboration between development and operations teams. DevOps can reduce the time needed to release updates, using automation to build, test and deploy code. Infrastructure as code is used to create infrastructure that is consistent and repeatable, allowing developers to test their code in production-like environments. Security tools can be incorporated earlier in the development process to find vulnerabilities earlier. These are just some of the benefits of DevOps practices.
 
+## Network Diagram
+
+![Network Diagram](./Capstone Network Diagram.png)
+
 ## Overview
 
 This project is focused on implementing DevOps practices into the development of a web application, here is an overview of the features implemented:
