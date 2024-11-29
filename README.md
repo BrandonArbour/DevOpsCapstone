@@ -1,4 +1,4 @@
-# DevOpsCapstone
+# DevOps Capstone
 
 DevOps is a set of practices that aim to improve collaboration between development and operations teams. DevOps can reduce the time needed to release updates, using automation to build, test and deploy code. Infrastructure as code is used to create infrastructure that is consistent and repeatable, allowing developers to test their code in production-like environments. Security tools can be incorporated earlier in the development process to find vulnerabilities earlier. These are just some of the benefits of DevOps practices.
 
@@ -18,3 +18,19 @@ This project is focused on implementing DevOps practices into the development of
   - Create and update the production environment on AWS with Terraform
 - GitHub action that scans the repository for secrets on a schedule
 - GitHub action that destroys the development and production environment
+
+## Secrets and Variables
+
+Secrets
+
+- AWS_ROLE: Name of the IAM role that will be assumed by Terraform
+- AWS_BUCKET_NAME: Name of the S3 bucket stores the Terraform state files
+- AWS_BUCKET_DEV_TFSTATES: Name of Terraform state file for the development environment
+- AWS_BUCKET_PROD_TFSTATES: Name of Terraform state file for the production environment
+- DOCKER_PASSWORD: Password for Docker Hub
+- DEV_CIDR_IPV4: CIDR ranges allowed to access the development environment
+- PROD_CIDR_IPV4: CIDR ranges allowed to access the production environment
+
+Variables
+
+- AWS_REGION: AWS region to deploy resources in
