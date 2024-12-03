@@ -40,7 +40,7 @@ jobs:
     - name: Terraform Destroy
       run: |
         cd ./Terraform/Dev
-        terraform destroy -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var "dev_image_name=brandonarbour/dev-capstone-web:latest"
+        terraform destroy -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var "dev_image_name=${{ secrets.DOCKER_USERNAME }}/dev-capstone-web:latest"
 
   destroy-prod:
     runs-on: ubuntu-latest
@@ -71,6 +71,6 @@ jobs:
     - name: Terraform Destroy
       run: |
         cd ./Terraform/Prod
-        terraform destroy -auto-approve -var "prod_cidr_ipv4=${{ secrets.PROD_CIDR_IPV4 }}" -var "prod_image_name=brandonarbour/capstone-web:latest"
+        terraform destroy -auto-approve -var "prod_cidr_ipv4=${{ secrets.PROD_CIDR_IPV4 }}" -var "prod_image_name=${{ secrets.DOCKER_USERNAME }}/capstone-web:latest"
 
         

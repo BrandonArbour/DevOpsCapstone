@@ -20,24 +20,24 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login to Docker
-      run: docker login -u brandonarbour -p ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Build the Docker image
       run: |
         cd './Web App'
-        docker build --file Dockerfile -t brandonarbour/dev-capstone-web:latest -t brandonarbour/dev-capstone-web:${GITHUB_SHA::7} .
+        docker build --file Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/dev-capstone-web:latest -t ${{ secrets.DOCKER_USERNAME }}/dev-capstone-web:${GITHUB_SHA::7} .
     
     - name: Run vulnerability scanner
       uses: aquasecurity/trivy-action@0.28.0
       with: 
-        image-ref: 'brandonarbour/dev-capstone-web:latest'
+        image-ref: '${{ secrets.DOCKER_USERNAME }}/dev-capstone-web:latest'
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
         severity: 'CRITICAL,HIGH'
 
     - name: Push the Docker image
-      run: docker push brandonarbour/dev-capstone-web --all-tags
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/dev-capstone-web --all-tags
     
     - name: Setup AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
@@ -70,4 +70,4 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
         cd ./Terraform/Dev
-        terraform apply -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var "dev_image_name=brandonarbour/dev-capstone-web:${GITHUB_SHA::7}"
+        terraform apply -auto-approve -var "dev_cidr_ipv4=${{ secrets.DEV_CIDR_IPV4 }}" -var "dev_image_name=${{ secrets.DOCKER_USERNAME }}/dev-capstone-web:${GITHUB_SHA::7}"

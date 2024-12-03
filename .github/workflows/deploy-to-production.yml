@@ -16,27 +16,27 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login to Docker
-      run: docker login -u brandonarbour -p ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Pull latest dev image
-      run: docker pull brandonarbour/dev-capstone-web:latest
+      run: docker pull ${{ secrets.DOCKER_USERNAME }}/dev-capstone-web:latest
 
     - name: Tag image for prod repo
       run: |
-        docker tag brandonarbour/dev-capstone-web:latest brandonarbour/capstone-web:latest
-        docker tag brandonarbour/capstone-web:latest brandonarbour/capstone-web:${GITHUB_SHA::7}
+        docker tag ${{ secrets.DOCKER_USERNAME }}/dev-capstone-web:latest ${{ secrets.DOCKER_USERNAME }}/capstone-web:latest
+        docker tag ${{ secrets.DOCKER_USERNAME }}/capstone-web:latest ${{ secrets.DOCKER_USERNAME }}/capstone-web:${GITHUB_SHA::7}
         
     - name: Run vulnerability scanner
       uses: aquasecurity/trivy-action@0.28.0
       with: 
-        image-ref: 'brandonarbour/capstone-web:latest'
+        image-ref: '${{ secrets.DOCKER_USERNAME }}/capstone-web:latest'
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
         severity: 'CRITICAL,HIGH'
 
     - name: Push the Docker image
-      run: docker push brandonarbour/capstone-web --all-tags
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/capstone-web --all-tags
 
     - name: Setup AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
@@ -68,4 +68,4 @@ jobs:
     - name: Terraform Apply
       run: |
         cd ./Terraform/Prod
-        terraform apply -auto-approve -var "prod_cidr_ipv4=${{ secrets.PROD_CIDR_IPV4 }}" -var "prod_image_name=brandonarbour/capstone-web:${GITHUB_SHA::7}"
+        terraform apply -auto-approve -var "prod_cidr_ipv4=${{ secrets.PROD_CIDR_IPV4 }}" -var "prod_image_name=${{ secrets.DOCKER_USERNAME }}/capstone-web:${GITHUB_SHA::7}"
