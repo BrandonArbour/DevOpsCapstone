@@ -11,7 +11,7 @@ DevOps is a set of practices that aim to improve collaboration between developme
 This project is focused on implementing DevOps practices into the development of a web application, here is an overview of the features implemented:
 
 - Docker image based on httpd, with a homepage giving a brief overview of the project
-- GitHub action to deploy the developement environment, triggers when code is changed:
+- GitHub action to deploy the development environment, triggers when code is changed:
   - Build the Docker image
   - Scan the image for vulnerabilities with Trivy
   - Push the image to Docker Hub
