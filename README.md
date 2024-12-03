@@ -32,6 +32,7 @@ Secrets
 - AWS_BUCKET_NAME: Name of the S3 bucket stores the Terraform state files
 - AWS_BUCKET_DEV_TFSTATES: Name of Terraform state file for the development environment
 - AWS_BUCKET_PROD_TFSTATES: Name of Terraform state file for the production environment
+- DOCKER_USERNAME: Username for Docker Hub
 - DOCKER_PASSWORD: Password for Docker Hub
 - DEV_CIDR_IPV4: CIDR ranges allowed to access the development environment
 - PROD_CIDR_IPV4: CIDR ranges allowed to access the production environment
